@@ -39,12 +39,12 @@
 						 -->
 						<%
 						List<String> list = new ArrayList();
-						list.add("이용로");
 						list.add("이윤진");
 						list.add("김지현");
 						list.add("최민영");
 						list.add("노태호");
 						list.add("도선호");
+						list.add("이용로");
 						list.add("김보라");
 						list.add("한소희");
 						list.add("김아영");
@@ -70,7 +70,15 @@
 									<tr>	
 								</c:if>
 								
-								<td>${n }</td>
+								<c:choose>
+									<c:when test="${n == '이용로'}">
+										<td style="font-weight: bold; color: green; ">${n }</td>
+									</c:when>
+									
+									<c:otherwise>
+										<td>${n }</td>
+									</c:otherwise>
+								</c:choose>
 								
 								<c:if test="${vs.last && (vs.index % 4) != 3 }">
 									<c:forEach begin="${(vs.index % 4)+1 }" end="3" step="1">
