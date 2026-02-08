@@ -39,25 +39,23 @@
 								....					
 						 -->
 						<%
-						Set<String> set = new HashSet();
-						
-						set.add("이윤진");
-						set.add("이용로");
-						set.add("김지현");
-						set.add("최민영");
-						set.add("노태호");
-						set.add("도선호");
-						set.add("김보라");
-						set.add("한소희");
-						set.add("김아영");
-						set.add("임채은");
-						set.add("박진아");
-						set.add("손우승");
-						set.add("임경호");
-						set.add("오수아");
+						List<String> list = new ArrayList();
+						list.add("이윤진");
+						list.add("김지현");
+						list.add("최민영");
+						list.add("노태호");
+						list.add("도선호");
+						list.add("이용로");
+						list.add("김보라");
+						list.add("한소희");
+						list.add("김아영");
+						list.add("임채은");
+						list.add("박진아");
+						list.add("손우승");
+						list.add("임경호");
+						list.add("오수아");
 
-						pageContext.setAttribute("set", set);
-						
+						pageContext.setAttribute("list", list);
 						%>
 
 						<table class="table table-bordered">
@@ -68,7 +66,7 @@
 								<th>4</th>
 							</tr>
 
-							<c:forEach items="${set}" var="n" varStatus="vs">
+							<c:forEach items="${list}" var="n" varStatus="vs">
 								<c:if test="${(vs.index % 4) == 0}">
 									<tr>	
 								</c:if>
