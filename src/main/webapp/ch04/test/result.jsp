@@ -1,5 +1,4 @@
 <%@page import="java.io.Console"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
@@ -23,22 +22,29 @@
 
 						<button class="btn btn-sm btn-primary">다시하기</button>
 						<%
-						String type = (String)session.getAttribute("type");
+						String type = (String) request.getAttribute("type");
+						if (type == null) {
+							type = (String) session.getAttribute("type");
+						}
+
 						String number = "";
-						int reqCnt = 0;
-						
+						int cnt = 0;
+
 						if ("redirect".equals(type)) {
 // 							out.print("<p>redirect에 왔다</p>");
-							number = (String)session.getAttribute("number");
-							reqCnt = Integer.parseInt((String)session.getAttribute("number")); // 리다이렉트라 요청횟수 number
-						}else{
+							number = (String) session.getAttribute("number");
+							Integer reqCntObj = (Integer) session.getAttribute("sesCnt");
+						    cnt = (reqCntObj == null) ? 0 : reqCntObj;
+							
+						}else if("forward".equals(type)) {
 // 							out.print("<p>forwarding에 왔다</p>");
-							number = request.getParameter("number");
-							reqCnt = Integer.parseInt(request.getParameter("reqCnt"));
+							number = (String) request.getAttribute("number");
+							Integer reqCntObj = (Integer) request.getAttribute("reqCnt");
+						    cnt = (reqCntObj == null) ? 0 : reqCntObj;
 						}
-						int num = (number==null)? 0 : Integer.parseInt(number);
-						
-						pageContext.setAttribute("reqCnt", reqCnt);
+						int num = (number == null) ? 0 : Integer.parseInt(number);
+
+						pageContext.setAttribute("cnt", cnt);
 						pageContext.setAttribute("type", type);
 						pageContext.setAttribute("s_num", num);
 						%>
@@ -46,17 +52,27 @@
 						<table class="table table-bordered">
 							<tr>
 								<td>
-									<c:forEach begin="0" end="3" varStatus="vs">
-										<img src="../resources/images/ch04/sin${vs.count}.jpg" width="300px" />
-										<br/>
-									</c:forEach>
+								<c:choose>
+									<c:when test="${cnt < s_num }">
+										<c:forEach begin="1" end="${cnt }" step="1" varStatus="vs">
+											<img src="../resources/images/ch04/sin${vs.count }.jpg" width="300px" /><br/>
+										</c:forEach>
+									</c:when>
+									<c:otherwise>
+										<c:forEach begin="1" end="${s_num }" step="1" varStatus="vs">
+											<img src="../resources/images/ch04/sin${vs.count }.jpg" width="300px" /><br/>
+										</c:forEach>
+									</c:otherwise>
+								</c:choose>
 								</td>
 								<td>
 									<p class="ddit_text">
-										페이지 이동방식 타입 : ${type }<br />
+										페이지 이동방식 타입 : ${type }<br /> 
 										입력 횟수 : ${s_num }번<br /> 
-										현재 횟수 : ${reqCnt }번<br /> 
-										현재 상태 : 횟수 사용 완료! 이미지 완성!
+										현재 횟수: ${cnt }번<br />
+										<c:if test="${s_num<=cnt }">
+											현재 상태 : 횟수 사용 완료! 이미지 완성!
+										</c:if>
 									</p>
 								</td>
 							</tr>

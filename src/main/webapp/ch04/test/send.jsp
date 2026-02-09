@@ -50,11 +50,19 @@
 					<div class="col-md-12">
 						<%
 							String err = request.getParameter("err");
-							if(err != null){
+							if(err != null && (Integer.parseInt(err) == 1)){
 							%>
 								<p class="customer_text pt-2">
 									<font color="red">
 										이동방식을 선택해주세요!
+									</font>
+								</p>
+							<%
+							}else if(err != null && (Integer.parseInt(err) == 2)){
+							%>
+								<p class="customer_text pt-2">
+									<font color="red">
+										포워딩은 4이하의 숫자만
 									</font>
 								</p>
 							<%
