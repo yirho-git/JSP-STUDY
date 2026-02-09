@@ -70,8 +70,15 @@
 									<tr>	
 								</c:if>
 								
-								<td>${n }</td>
-								
+								<c:choose>
+									<c:when test="${n == '이용로' }">
+										<td style="font-weight: bold; color: green;">${n }</td>
+									</c:when>
+									<c:otherwise>
+										<td>${n }</td>
+									</c:otherwise>
+								</c:choose>
+							
 								<c:if test="${vs.last && (vs.index % 4) != 3 }">
 									<c:forEach begin="${(vs.index % 4)+1 }" end="3" step="1">
 										<td> </td>
