@@ -1,3 +1,5 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.ddit.index.IndexRepository"%>
@@ -38,7 +40,7 @@
 						 -->
 						<%
 
-						Set<String> set = new HashSet();
+						Set<String> set = new HashSet<String>();
 						
 						set.add("이윤진");
 						set.add("이용로");
