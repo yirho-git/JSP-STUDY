@@ -59,7 +59,8 @@
 										</c:forEach>
 									</c:when>
 									<c:otherwise>
-										<c:forEach begin="1" end="4" step="1" varStatus="vs">
+										<c:set var="max" value="${s_num > 4 ? 4 : s_num}" />
+										<c:forEach begin="1" end="${max }" step="1" varStatus="vs">
 											<img src="../resources/images/ch04/sin${vs.count }.jpg" width="300px" /><br/>
 										</c:forEach>
 									</c:otherwise>
