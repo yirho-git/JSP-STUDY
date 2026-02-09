@@ -33,23 +33,12 @@ public class Ch04TestServlet extends HttpServlet {
 			response.sendRedirect(goPage);
 
 		} else if ("redirect".equals(type)) {
-			Integer sesCnt = (Integer) session.getAttribute("sesCnt");
-			if (sesCnt == null) {
-				sesCnt = 0;
-			}
-			sesCnt++;
 			session.setAttribute("number", number);
 			session.setAttribute("type", type);
-			session.setAttribute("sesCnt", sesCnt);
+			session.setAttribute("sesCnt", number);
 			goPage = request.getContextPath() + "/test/result.do";
 
-			if (sesCnt < Integer.parseInt(number)) {
-				response.sendRedirect(goPage);
-				return;
-			}
-
-			request.setAttribute("type", "redirect");
-			request.getRequestDispatcher("/ch04/test/result.jsp").forward(request, response);
+			response.sendRedirect(goPage);
 
 		} else if ("forward".equals(type)) {
 			if (Integer.parseInt(number) > 4) {

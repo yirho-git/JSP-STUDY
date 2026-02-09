@@ -62,7 +62,7 @@
 							%>
 								<p class="customer_text pt-2">
 									<font color="red">
-										포워딩은 4이하의 숫자만
+										잘못된 입력값
 									</font>
 								</p>
 							<%

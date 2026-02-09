@@ -33,7 +33,7 @@
 						if ("redirect".equals(type)) {
 // 							out.print("<p>redirect에 왔다</p>");
 							number = (String) session.getAttribute("number");
-							Integer reqCntObj = (Integer) session.getAttribute("sesCnt");
+							Integer reqCntObj = Integer.parseInt((String)session.getAttribute("sesCnt"));
 						    cnt = (reqCntObj == null) ? 0 : reqCntObj;
 							
 						}else if("forward".equals(type)) {
@@ -59,7 +59,7 @@
 										</c:forEach>
 									</c:when>
 									<c:otherwise>
-										<c:forEach begin="1" end="${s_num }" step="1" varStatus="vs">
+										<c:forEach begin="1" end="4" step="1" varStatus="vs">
 											<img src="../resources/images/ch04/sin${vs.count }.jpg" width="300px" /><br/>
 										</c:forEach>
 									</c:otherwise>
