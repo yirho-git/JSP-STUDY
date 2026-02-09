@@ -20,13 +20,26 @@
 					<div class="col-md-12">
 						<h1>페이지 이동방식 테스트</h1>
 						
+						<%
+							String err = request.getParameter("err");
+							if(err != null){
+							%>
+								<p class="customer_text pt-2">
+									<font color="red">
+										이동방식을 선택해주세요!
+									</font>
+								</p>
+							<%
+							}
+						%>
+						
 						<form action="/ch04/form.do" method="post">
 							<div class="mb-3">
 								<label for="type" class="form-label">이동방식</label> <select
 									name="type" class="form-control">
 									<option value="">--선택--</option>
-									<option value="">포워딩</option>
-									<option value="">리다이렉트</option>
+									<option value="forward">포워딩</option>
+									<option value="redirect">리다이렉트</option>
 								</select>
 							</div>
 							<div class="mb3">
