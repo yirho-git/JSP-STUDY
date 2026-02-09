@@ -1,3 +1,5 @@
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.ddit.index.IndexRepository"%>
@@ -38,7 +40,8 @@
 								....					
 						 -->
 						<%
-						List<String> list = new ArrayList();
+						//List<String> list = new ArrayList();
+						Set<String> list = new HashSet();
 						list.add("이용로");
 						list.add("이윤진");
 						list.add("김지현");
@@ -89,7 +92,6 @@
 									</tr>
 								</c:if>
 							</c:forEach>
-
 
 						</table>
 					</div>
