@@ -1,5 +1,3 @@
-<%@page import="java.util.HashSet"%>
-<%@page import="java.util.Set"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.ddit.index.IndexRepository"%>
@@ -39,6 +37,7 @@
 								....					
 						 -->
 						<%
+
 						Set<String> set = new HashSet();
 						
 						set.add("이윤진");
@@ -72,17 +71,17 @@
 								<c:if test="${(vs.index % 4) == 0}">
 									<tr>	
 								</c:if>
-								
+							
 								<c:choose>
-									<c:when test="${n == '이용로'}">
-										<td style="font-weight: bold; color: green; ">${n }</td>
+
+									<c:when test="${n == '이용로' }">
+										<td style="font-weight: bold; color: green;">${n }</td>
 									</c:when>
-									
 									<c:otherwise>
 										<td>${n }</td>
 									</c:otherwise>
 								</c:choose>
-								
+							
 								<c:if test="${vs.last && (vs.index % 4) != 3 }">
 									<c:forEach begin="${(vs.index % 4)+1 }" end="3" step="1">
 										<td> </td>

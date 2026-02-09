@@ -73,7 +73,7 @@
 								
 								<c:choose>
 									<c:when test="${n == '이용로'}">
-										<td style="font-weight: bold; color: green; ">${n }</td>
+										<td style=" font-weight: bold; color: green; ">${n }</td>
 									</c:when>
 									
 									<c:otherwise>

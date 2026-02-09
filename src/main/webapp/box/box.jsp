@@ -17,7 +17,7 @@
 			<p class="services_text">각 쳅터별 내용을 확인할 수 있습니다.</p>
 			<div class="services_section_2">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-12">
 						예제를 작성해주세요.
 					</div>
 				</div>
