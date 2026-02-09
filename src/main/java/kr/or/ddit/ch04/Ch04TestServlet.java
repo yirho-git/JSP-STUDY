@@ -17,6 +17,8 @@ import java.util.Map;
 @WebServlet("/send.do")
 public class Ch04TestServlet extends HttpServlet {
 
+	private int reqCnt;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.getRequestDispatcher("/ch04/test/send.jsp").forward(request, response);
@@ -45,13 +47,14 @@ public class Ch04TestServlet extends HttpServlet {
 				goPage = request.getContextPath() + "/test/result.do";
 				response.sendRedirect(goPage);
 			} 
-//			else if (type.equals("forward") && Integer.parseInt(number) < 5) {
-//				request.setAttribute("number", number);
-//				request.setAttribute("type", type);
-//
-//				request.getRequestDispatcher("/ch04/test/result.jsp").forward(request, response);
-//
-//			}
+			else if (type.equals("forward") && (Integer.parseInt(number) < 5)) {
+				request.setAttribute("number", number);
+				request.setAttribute("type", type);
+				request.setAttribute("reqCnt", reqCnt);
+
+				request.getRequestDispatcher("/ch04/test/result.jsp").forward(request, response);
+
+			}
 		}
 
 	}

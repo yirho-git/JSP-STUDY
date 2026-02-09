@@ -48,6 +48,19 @@
 					 -->
 								
 					<div class="col-md-12">
+						<%
+							String err = request.getParameter("err");
+							if(err != null){
+							%>
+								<p class="customer_text pt-2">
+									<font color="red">
+										이동방식을 선택해주세요!
+									</font>
+								</p>
+							<%
+							}
+						%>
+						
 						<form action="/send.do" method="post">
 							<div class="mb-3">
 								<label for="id" class="form-label">타입</label>
