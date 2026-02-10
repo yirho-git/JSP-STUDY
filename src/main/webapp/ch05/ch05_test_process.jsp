@@ -1,6 +1,8 @@
+<%@page import="java.lang.reflect.AccessFlag.Location"%>
 <%@page import="kr.or.ddit.index.IndexRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,8 +37,51 @@
 							- 2) 스크립트를 활용한 방법
 							
 							두가지 방법 모두 또는 두개중에 한개를 선택해서 구현해주세요.
-						
 						 -->
+						 
+						 <%
+// 						 	String id = request.getParameter("id");
+// 						 	String pw = request.getParameter("pw");
+// 						 	String name = request.getParameter("name");
+// 						 	String gender = request.getParameter("gender");
+// 						 	String tel = request.getParameter("tel");
+// 						 	String addr = request.getParameter("addr");
+						 	
+// 						 	out.println("	아이디 : " + id + "<br/>");
+// 							out.println("	비밀번호 : " + pw + "<br/>");
+// 							out.println("	이름 : " + name + "<br/>");
+// 							out.println("	성별 : " + gender + "<br/>");
+// 							out.println("	전화번호 : " + tel + "<br/>");
+// 							out.println("	주소 : " + addr + "<br/>");
+							
+// 							response.setHeader("refresh", "5,url=https://naver.com ");
+						 %>
+						<table class="table table-bordered">
+							<tr>
+								<td><c:out value="아이디"></c:out></td>
+								<td><c:out value="${param.id }"/></td>
+							</tr>
+							<tr>
+								<td><c:out value="비밀번호"></c:out></td>
+								<td><c:out value="${param.pw }"/></td>
+							</tr>
+							<tr>
+								<td><c:out value="이름"></c:out></td>
+								<td><c:out value="${param.name }"/></td>
+							</tr>
+							<tr>
+								<td><c:out value="성별"></c:out></td>
+								<td><c:out value="${param.gender }"/></td>
+							</tr>
+							<tr>
+								<td><c:out value="전화번호"></c:out></td>
+								<td><c:out value="${param.tel }"/></td>
+							</tr>
+							<tr>
+								<td><c:out value="주소"></c:out></td>
+								<td><c:out value="${param.addr }"/></td>
+							</tr>
+						</table>
 					</div>
 				</div>
 			</div>
@@ -45,6 +90,10 @@
 
 	<%@ include file="/module/footer.jsp"%>
 	<%@ include file="/module/footerPart.jsp"%>
-	
+<script>
+	setTimeout(() => {
+		location.href = "https://www.naver.com";
+	}, 5000);
+</script>
 </body>
 </html>

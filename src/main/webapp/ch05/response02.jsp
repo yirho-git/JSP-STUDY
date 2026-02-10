@@ -31,8 +31,9 @@
 							// 				의 형태로도 활용할 수 있습니다
 							// ex) '5; url=https://example.com' 의 형태로 값을 설정
 							// 이와같은 형태라면 setIntHeader()가 아닌 setHeader()를 활용
-							response.setIntHeader("Refresh", 1);
+							response.setIntHeader("refresh", 1);
 						%>
+						
 						<%=new Date() %>
 					</div>
 				</div>
