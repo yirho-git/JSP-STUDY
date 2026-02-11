@@ -85,17 +85,25 @@
 </body>
 	
 <script>
+/*
+$(function(){ 
+	let checkEtc = $("#checkEtc");
+	
+	checkEtc.on("change", function() {
+		this.checked? $("#etcInput").show() : $("#etcInput").hide(); 
+	});
+});
+*/
 
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", function() {
 	const checkEtc = document.getElementById("checkEtc");
 	const etcInput = document.getElementById("etcInput");
-	
-	checkEtc.addEventListener("change", function(){
-		
-		etcInput.style.display = checkEtc.checked? "inline-block" : "none";		
-		
-// 		if(checkEtc.checked) etcInput.style.display = "inline-block";
-// 		else etcInput.style.display = "none";
+
+	checkEtc.addEventListener("change", function() {
+		etcInput.style.display = checkEtc.checked ? "inline-block" : "none";
+
+		// if(checkEtc.checked) etcInput.style.display = "inline-block";
+		// else etcInput.style.display = "none";
 	});
 });
 
