@@ -42,16 +42,16 @@
 								<c:out value="타입 : 사용자"/><br>
 							</c:if>
 							<c:out value="아이디 : ${param.id }"/><br>
-							<c:out value="비밀번호 : ${param.pw}"/><br>
-							<c:out value="이름 : ${param.name}"/><br>
-							<c:out value="핸드폰번호 : ${param.phone1}"/>-
-							<c:out value="${param.phone2}"/>-
-							<c:out value="${param.phone3}"/><br>
-							<c:if test="${'M' eq param.gender }">
-							<c:out value="성별 : 남자"/><br>
+							<c:out value="비밀번호 : ${param.pw }"/><br>
+							<c:out value="이름 : ${param.name }"/><br>
+							<c:out value="핸드폰번호 : ${param.phone1 }"/>-
+							<c:out value="${param.phone2 }"/>-
+							<c:out value="${param.phone3 }"/><br>
+							<c:if test="${'male' eq param.gender }">
+								<c:out value="성별 : 남자"/><br>
 							</c:if>
-							<c:if test="${'G' eq param.gender }">
-							<c:out value="성별 : 여자"/><br>
+							<c:if test="${'femae' eq param.gender }">
+								<c:out value="성별 : 여자"/><br>
 							</c:if>
 							<c:set var="list" value="${paramValues.hobby}"/>
 							<c:out value="취미 : "/>
@@ -126,7 +126,7 @@
 							비밀번호 : <%=pw %><br>
 							이름 : <%=name %><br>
 							핸드폰번호 : <%=phone1 %>-<%=phone2 %>-<%=phone3 %><br>
-							성별 : <%=gender.equals("M") ? "남자" : "여자" %><br>
+							성별 : <%=gender.equals("male") ? "남자" : "여자" %><br>
 							취미 : 
 							<%
 								if(hobby != null){

@@ -54,11 +54,14 @@
 										<option value="010">010</option>
 										<option value="011">011</option>
 										<option value="016">016</option>
+										<option value="017">017</option>
+										<option value="019">019</option>
+										<option value="070">070</option>
 								  </select> - 
 								  <input type="text" id="phone2" name="phone2" maxlength="4" size="4"/>
 								  <input type="text" id="phone3" name="phone3" maxlength="4" size="4"/><br>
-							성별 <input type="radio" name="gender" value="M" checked="checked"/>남자
-								  <input type="radio" name="gender" value="G"/>여자<br>
+							성별 <input type="radio" name="gender" value="male" checked="checked"/>남자
+								  <input type="radio" name="gender" value="female"/>여자<br>
 							취미 <input type="checkbox" name="hobby" value="development"/>개발 
 								<input type="checkbox" name="hobby" value="book"/>독서
 								<input type="checkbox" name="hobby" value="sports"/>운동  
@@ -67,7 +70,7 @@
 								<input type="checkbox" name="hobby" id="checkEtc" value="etc"/> etc &nbsp;&nbsp; 
 								<input type="text" id="etcInput" name="etcInput" style="display:none;" placeholder=" 기타 취미 입력"/><br>
 								<!-- visibility: hidden, visible; 보다 display: none, block;을 더 많이 쓴다고 함 -->
-							<textarea rows="10" cols="100" name="comment" placeholder="가입 인사를 입력해주세요" wrap="hard"> </textarea><br>
+							 <textarea rows="10" cols="100" name="comment" placeholder="가입 인사를 입력해주세요" wrap="hard"> </textarea><br>
 							 <input type="submit" value="전송">
 							 <input type="reset" value="리셋">
 						</form>
@@ -84,7 +87,6 @@
 <script>
 
 document.addEventListener("DOMContentLoaded", function(){
-	
 	const checkEtc = document.getElementById("checkEtc");
 	const etcInput = document.getElementById("etcInput");
 	
@@ -94,7 +96,6 @@ document.addEventListener("DOMContentLoaded", function(){
 		
 // 		if(checkEtc.checked) etcInput.style.display = "inline-block";
 // 		else etcInput.style.display = "none";
-		
 	});
 });
 
