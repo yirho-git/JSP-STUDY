@@ -18,12 +18,12 @@
 			<div class="services_section_2">
 				<div class="row">
 					<div class="col-md-12">
-						<form action="form04_process.jsp" name="member" method="post">
+						<form action="form05_process.jsp" name="member" method="post">
 							아이디 : <input type="text" id="id" name="id"/>
 								   <input type="button" value="중복확인"/><br>
 							비밀번호 : <input type="text" id="pw" name="pw"/><br>
 							이름	: <input type="text" id="name" name="name"/><br>
-							연락처 : <select name="phone01"> 
+							연락처 :<select name="phone01"> 
 										<option value="010">010</option>
 										<option value="011">011</option>
 										<option value="016">016</option>
@@ -38,8 +38,8 @@
 							 	  <input type="checkbox" id="hobby2" name="hobby" value="sports"/>운동	
 							 	  <input type="checkbox" id="hobby3" name="hobby" value="movie"/>영화감상<br>	
 							자기소개 : <textarea rows="10" cols="50" name="comment" wrap="hard"> </textarea>
-							 <input type="submit" value="전송">
-							 <input type="reset" value="리셋">
+							  		 <input type="submit" value="전송">
+									 <input type="reset" value="리셋">
 						</form>
 					</div>
 				</div>
@@ -49,6 +49,8 @@
 
 	<%@ include file="/module/footer.jsp"%>
 	<%@ include file="/module/footerPart.jsp"%>
+	<script>
 	
+	</script>
 </body>
 </html>
