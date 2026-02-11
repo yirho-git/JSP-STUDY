@@ -35,16 +35,27 @@
 						</select><br>
 						
 						<div id="jstl" class="content">
-							<c:out value="타입 : ${param.type }"/><br>
+							<c:if test="${param.type eq 'admin' }">
+								<c:out value="타입 : 관리자"/><br>
+							</c:if>
+							<c:if test="${param.type eq 'user' }">
+								<c:out value="타입 : 사용자"/><br>
+							</c:if>
 							<c:out value="아이디 : ${param.id }"/><br>
-							<c:out value="비밀번호 : ${param.pw}"/>
+							<c:out value="비밀번호 : ${param.pw}"/><br>
 							<c:out value="이름 : ${param.name}"/><br>
 							<c:out value="핸드폰번호 : ${param.phone1}"/>-
 							<c:out value="${param.phone2}"/>-
 							<c:out value="${param.phone3}"/><br>
+							<c:if test="${'M' eq param.gender }">
+							<c:out value="성별 : 남자"/><br>
+							</c:if>
+							<c:if test="${'G' eq param.gender }">
+							<c:out value="성별 : 여자"/><br>
+							</c:if>
 							<c:set var="list" value="${paramValues.hobby}"/>
 							<c:out value="취미 : "/>
-							<c:forEach items="${list }" var="n">
+							<c:forEach items="${list }" var="n" varStatus="vs">
 								<c:if test="${n eq 'development' }">
 									<c:out value="개발"/>
 								</c:if>
@@ -58,18 +69,19 @@
 									<c:out value="영화감상"/>
 								</c:if>
 								<c:if test="${n eq 'music' }">
-									<c:out value="음악"/>
+									<c:out value="음악감상"/>
 								</c:if>
 								<c:if test="${n eq 'etc' }">
-									<c:out value="${etc }"/>
+									<c:out value="${param.etcInput }"/>
 								</c:if>
 							</c:forEach><br>
 							<c:out value="가입인사 : ${param.comment }"/><br>
 						</div>
 						
 				   <%!
-				   	public String getHobby(String hobby){
+				   	public String getHobby(String hobby, String etcInput){
 					   String hob = null;
+
 					   	if("development".equals(hobby))
 							hob = "개발";
 					   	if("book".equals(hobby))
@@ -81,13 +93,15 @@
 						if("music".equals(hobby))
 							hob = "음악감상";
 						if("etc".equals(hobby))
-							hob = "기타";
+							hob = etcInput;
 					   return hob;
 				   }
+				   
 				   %>
 				   <%
 						request.setCharacterEncoding("utf-8");
-					
+						
+				   		String type = request.getParameter("type");
 						String id = request.getParameter("id");
 						String pw = request.getParameter("pw");
 						String name = request.getParameter("name");
@@ -96,10 +110,18 @@
 						String phone3 = request.getParameter("phone3");
 						String gender = request.getParameter("gender");
 						String[] hobby = request.getParameterValues("hobby");
+						String etcInput = request.getParameter("etcInput");
 						String comment = request.getParameter("comment");
+						
+						if("user".equals(type)){
+							type = "사용자";
+						}else if("admin".equals(type)){
+							type = "관리자";
+						}
 					%>
 					<div id="scriptlet" class="content">
 						<p class="ddit_text">
+							타입 : <%=type %><br>
 							아이디 : <%=id %><br>
 							비밀번호 : <%=pw %><br>
 							이름 : <%=name %><br>
@@ -109,7 +131,9 @@
 							<%
 								if(hobby != null){
 									for(int i = 0; i < hobby.length; i++){
-										out.println(" " + getHobby(hobby[i]));
+										if(!hobby[i].isEmpty() && hobby[i]!=null){
+											out.println(" " + getHobby(hobby[i], etcInput));
+										}
 									}
 								}
 							%>

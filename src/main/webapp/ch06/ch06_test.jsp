@@ -6,6 +6,13 @@
 
 <head>
 <%@ include file="/module/headPart.jsp"%>
+
+<style>
+#etcInput {
+ display: inline-block;
+}
+</style>
+
 </head>
 
 <body>
@@ -50,16 +57,18 @@
 								  </select> - 
 								  <input type="text" id="phone2" name="phone2" maxlength="4" size="4"/>
 								  <input type="text" id="phone3" name="phone3" maxlength="4" size="4"/><br>
-							성별 <input type="radio" name="gender" value="M" checked="checked"/> 남자
-								  <input type="radio" name="gender" value="G"/> 여자<br>
-							취미 <input type="checkbox" name="hobby" value="development">	개발 
-								<input type="checkbox" name="hobby" value="book"> 독서
-								<input type="checkbox" name="hobby" value="sports">	운동  
-								<input type="checkbox" name="hobby" value="movie"> 영화감상	  
-								<input type="checkbox" name="hobby" value="music"> 음악
-								<input type="checkbox" name="hobby" value="etc"> etc <br>
+							성별 <input type="radio" name="gender" value="M" checked="checked"/>남자
+								  <input type="radio" name="gender" value="G"/>여자<br>
+							취미 <input type="checkbox" name="hobby" value="development"/>개발 
+								<input type="checkbox" name="hobby" value="book"/>독서
+								<input type="checkbox" name="hobby" value="sports"/>운동  
+								<input type="checkbox" name="hobby" value="movie"/>영화감상	  
+								<input type="checkbox" name="hobby" value="music"/>음악감상
+								<input type="checkbox" name="hobby" id="checkEtc" value="etc"/> etc &nbsp;&nbsp; 
+								<input type="text" id="etcInput" name="etcInput" style="display:none;" placeholder=" 기타 취미 입력"/><br>
+								<!-- visibility: hidden, visible; 보다 display: none, block;을 더 많이 쓴다고 함 -->
 							<textarea rows="10" cols="100" name="comment" placeholder="가입 인사를 입력해주세요" wrap="hard"> </textarea><br>
-							<input type="submit" value="전송">
+							 <input type="submit" value="전송">
 							 <input type="reset" value="리셋">
 						</form>
 					</div>
@@ -67,9 +76,28 @@
 			</div>
 		</div>
 	</div>
-
 	<%@ include file="/module/footer.jsp"%>
 	<%@ include file="/module/footerPart.jsp"%>
-	
+
 </body>
+	
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+	
+	const checkEtc = document.getElementById("checkEtc");
+	const etcInput = document.getElementById("etcInput");
+	
+	checkEtc.addEventListener("change", function(){
+		
+		etcInput.style.display = checkEtc.checked? "inline-block" : "none";		
+		
+// 		if(checkEtc.checked) etcInput.style.display = "inline-block";
+// 		else etcInput.style.display = "none";
+		
+	});
+});
+
+</script>
+	
 </html>
