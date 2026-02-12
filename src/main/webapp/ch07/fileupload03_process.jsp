@@ -14,7 +14,7 @@
 	<div class="services_section layout_padding">
 		<div class="container">
 			<h1 class="services_taital"><%=IndexRepository.getChapter("CH07") %></h1>
-			<p class="services_text">각 쳅터별 내용을 확인할 수 있습니다.</p>
+			<p class="services_text">각 챕터별 내용을 확인할 수 있습니다.</p>
 			<div class="services_section_2">
 				<div class="row">
 					<div class="col-md-12">
@@ -41,6 +41,7 @@
 						if(part != null && part.getSize() > 0){
 							out.println("<p class='customer_text'>Result</p>");
 							out.println("<p class='ddit_text'>");
+							
 							// getName() 메소드로 파일 데이터의 key를 꺼낸다
 							out.println("	name : " + part.getName() + "<br/>");
 							// getSubmittedFileName() 메소드로 파일명을 꺼낸다.
