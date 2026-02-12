@@ -41,7 +41,7 @@
 							tempFile.mkdirs(); // 해당 위치에 폴더를 생성
 						}
 						
-						out.println("<h5 class='ustomer_text'>Result</h5>");
+						out.println("<h5 class='customer_text'>Result</h5>");
 						out.println("<p class='ddit_text'># 일반 데이터</p>");
 						
 						// request로 넘어온 파라미터의 key(input요소의 name)들을 꺼낸다.

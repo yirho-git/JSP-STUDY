@@ -23,7 +23,56 @@
 			<div class="services_section_2">
 				<div class="row">
 					<div class="col-md-12">
-											
+					<%
+						String path = request.getServletContext().getRealPath("/resources/upload");
+						File tempFile = new File(path);
+						
+						if(!tempFile.exists()){
+							tempFile.mkdirs();
+						}
+						
+						String id = request.getParameter("id");
+						String pw = request.getParameter("pw");
+						String gender = request.getParameter("gender");
+						gender = "male".equals(gender)? "남자" : "여자";
+						
+						String filename = "";
+						int maxSize = 2*1024*1024;
+						boolean flag = true;
+						
+						Collection<Part> collect = request.getParts();
+						Iterator<Part> it = collect.iterator();
+						
+						out.println("<h5 class='customer_text>프로필이미지 등록완료</h5>");
+						out.println("<p class='ddit_text'>");
+						out.println("	아이디 : "+ id +"<br/>");
+						out.println("	비밀번호 : "+ pw +"<br/>");
+						out.println("	성별 : "+ gender +"<br/>");
+						out.println("========== 첨부파일 목록 ==========<br/>");
+						
+						while(it.hasNext()){
+							Part part = it.next();
+							String key = part.getName();	// input.name의 값"profileImg"를 저장
+							
+							if("profileImg".equals(key)){
+// 								filename = part.getSubmittedFileName();	// 업로드한 실제 파일명
+// 								long fileSize = part.getSize();
+								out.println("<img src=\"/upload/" + part.getSubmittedFileName() 
+						          + "\" style=\"width:180px; height:200px;\"><br/>");
+								out.println("	파일명 : " + part.getSubmittedFileName() + "<br/>");
+								out.println("	파일크기 : " + part.getSize() + "<br/>");
+								out.println("	파일타입 : " + part.getContentType() + "<br/>");
+// 								if(maxSize < fileSize){
+// 									flag=false;
+// 								}else{
+// 									part.write(path+"/"+filename); // 실제 경로(디스크 경로)에 파일 쓰기(복사)
+// 								}
+							}
+						}
+						
+						
+						
+					%>	
 					</div>
 				</div>
 			</div>

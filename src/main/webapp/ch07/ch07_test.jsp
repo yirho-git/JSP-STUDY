@@ -21,9 +21,11 @@
 						<form action="ch07_test_process.jsp" method="post" enctype="multipart/form-data">
 							아이디 : <input type="text" name="id" /><br/>
 							비밀번호 : <input type="text" name="pw" /><br/>
-							성별 : <input type="text" name="name" /><br/>
-							첨부파일 : <input type="file" name="fileImg" multiple="multiple"/><br/>
-							<button type="submit">제출</button>
+							성별 :
+								<input type="radio" value="male" name="gender" checked="checked" /> 남자
+								<input type="radio" value="female" name="gender" /> 여자 <br/>
+							첨부파일 : <input type="file" name="profileImg" multiple="multiple"/><br/>
+							<button type="submit" style="background-color: skyblue; ">파일 올리기</button>
 						</form>
 					</div>
 				</div>
