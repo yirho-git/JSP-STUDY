@@ -107,6 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
 	});
 });
 
-</script>1
+</script>
 	
 </html>
