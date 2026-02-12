@@ -59,6 +59,7 @@
 							while(ite.hasNext()){
 								Part part = ite.next();
 								String name = part.getName(); // parameter name(key)
+							
 								if(name.equals("profileImg")){
 									%>
 									<img src="/upload/<%=part.getSubmittedFileName()%>" style="width:180px; height:200px;"><br>
