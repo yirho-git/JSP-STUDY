@@ -62,15 +62,14 @@
 								out.println("<table>");
 								out.println("<tr>");
 								out.println("<td>");
-// 								out.println("<img src=\"" + request.getContextPath() 
-// 						        				+ "/resources/upload/" + part.getSubmittedFileName() 
-// 						        				+ "\" style=\"width:180px; height:200px;\"><br>");	   
+								out.println("<img src=\"" + request.getContextPath() 
+						        				+ "/resources/upload/" + part.getSubmittedFileName() 
+						        				+ "\" style=\"width:180px; height:200px;\"><br>");	   
 								
 								
 								%>
 <%-- 								<img src="<%=request.getContextPath()%>/resources/upload/<%=part.getSubmittedFileName()%>" --%>
 <!--    									  style="width:180px; height:200px;"><br> -->
-								<img src="/upload/<%=part.getSubmittedFileName()%>" style="width:180px; height:200px;"><br>
 								<%
 								out.println("</td>");
 								out.println("</tr>");
