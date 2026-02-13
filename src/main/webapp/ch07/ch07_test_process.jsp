@@ -51,6 +51,7 @@
 
 						Collection<Part> collect = request.getParts();
 						Iterator<Part> it = collect.iterator();
+				
 						while(it.hasNext()){
 							Part part = it.next();
 							String key = part.getName();	// input.name의 값"profileImg"를 저장
@@ -58,21 +59,31 @@
 							if("profileImg".equals(key)){
 								filename = part.getSubmittedFileName();	// 업로드한 실제 파일명
 								long fileSize = part.getSize();
+								out.println("<table>");
+								out.println("<tr>");
+								out.println("<td>");
+// 								out.println("<img src=\"" + request.getContextPath() 
+// 						        				+ "/resources/upload/" + part.getSubmittedFileName() 
+// 						        				+ "\" style=\"width:180px; height:200px;\"><br>");	   
 								
-								out.println("<img src=\"" + request.getContextPath() 
-						        + "/resources/upload/" + part.getSubmittedFileName() 
-						        + "\" style=\"width:180px; height:200px;\"><br>");	   
 								
 								%>
 <%-- 								<img src="<%=request.getContextPath()%>/resources/upload/<%=part.getSubmittedFileName()%>" --%>
 <!--    									  style="width:180px; height:200px;"><br> -->
+								<img src="/upload/<%=part.getSubmittedFileName()%>" style="width:180px; height:200px;"><br>
 								<%
-							
+								out.println("</td>");
+								out.println("</tr>");
+								
+								out.println("<tr>");
+								out.println("<td>");
 								out.println("	파일명 : " + part.getSubmittedFileName() + "<br/>");
 								out.println("	파일크기 : " + part.getSize() + "<br/>");
 								out.println("	파일타입 : " + part.getContentType() + "<br/>");
 // 								out.println("	경로 : /upload/" + part.getSubmittedFileName() + "<br/>");
-								
+								out.println("</td>");
+								out.println("</tr>");
+								out.println("</table>");
 								if(maxSize < fileSize){
 									flag=false;
 								}else{
