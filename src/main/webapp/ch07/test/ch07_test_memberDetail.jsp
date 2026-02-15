@@ -32,21 +32,23 @@
 						 <h3 class="ddit_chapter">회원 상세보기</h3>
                     	 <p class="ddit_text pb-3"></p>
 	                     <%
-	                     	String curId = request.getParameter("detail-id");
+	                     	String loginId = request.getParameter("login-id");
+	                     	String detailId = request.getParameter("detail-id");
 	                     	
 	                     	MemberDAO dao = MemberDAO.getInstance();
-	                     	MemberVO vo = dao.getMember(curId);
+	                     	MemberVO vo = dao.getMember(detailId);
 	                     	
 	                     	pageContext.setAttribute("n", vo);
+	                     	pageContext.setAttribute("loginId", loginId);
 	                     %>	
-	                     	<a href="ch07_test_memberList.jsp?id=${n.mem_id }" class="ddit_btn ddit_btn_outline_info">목록</a>
+	                     	<a href="ch07_test_memberList.jsp?id=${loginId }" class="ddit_btn ddit_btn_outline_info">목록</a>
 	                     	<div style="height: 20px;"></div>
 	                     		<div class="box" style="border: 1px solid #D4D4D4; width: 200px;">
 	                     			<div class="title" style="height: 50px; border-bottom: 1px solid #D4D4D4;
 	                     				 display: flex; justify-content: space-around; background-color: #F0F0F0 ;">
 		                     			<div style="padding: 12px; height: 30px;">${n.mem_name }님의 정보</div>
 	 								</div>
-										<img alt="" src="${n.filename }" style="height:200px;" /><br/>
+										<img alt="" src="${n.filename }" style="border-bottom:1px solid #D4D4D4; height:200px; width: 198px" /><br/>
 									<div style="display: flex; justify-content:center; vertical-align: middle;">
 										<c:out value="아이디 : ${n.mem_id }" /><br/>
 										<c:out value="비밀번호 : ${n.mem_pw }" /><br/>

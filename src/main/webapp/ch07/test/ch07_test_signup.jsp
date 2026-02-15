@@ -32,6 +32,25 @@
 							
 							3. 뒤로가기 버튼을 클릭 시, 로그인 페이지로 이동해주세요.
 						-->
+						<%
+							String error = request.getParameter("error");
+							pageContext.setAttribute("err", error);
+							if(error!=null){
+							%>
+							<c:if test="${err=='3'}">
+								<div class="alert alert-danger">
+									아이디가 이미 존재합니다.						
+								</div>
+							</c:if>
+							<c:if test="${err=='4'}">
+								<div class="alert alert-danger">
+									파일 크기가 초과되어 회원가입을 진행할 수 없습니다. 						
+								</div>
+							</c:if>
+							<%
+							}
+						%>						
+						
 						 <h3 class="ddit_chapter">회원가입</h3>
 						 <p class="ddit_text pb-3"></p>
 						 <form action="ch07_test_signup_process.jsp" method="post" enctype="multipart/form-data">
@@ -42,7 +61,7 @@
 								남자 <input type="radio" name="gender" value="male" checked="checked">					 
 								여자 <input type="radio" name="gender" value="female"><br/>
 							프로필 이미지 :				
-							<input type="file" name="profileImg"><br/>
+							<input type="file" name="profileImg"><br/><br/>
 							<input type="submit" class="ddit_btn ddit_btn_outline_primary" value="가입하기">	  
 	                     	<a href="ch07_test_signin.jsp" class="ddit_btn ddit_btn_outline_info">뒤로가기</a>
 						 </form>

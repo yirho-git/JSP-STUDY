@@ -42,11 +42,6 @@
 									서버에러, 다시 시도해주세요!							
 								</div>
 							</c:if>               	 										
-							<c:if test="${err=='3' }">
-								<div class="alert alert-danger">
-									아이디 중복							
-								</div>
-							</c:if>               	 										
                     	 	<%
                     	 	}
                     	 %>

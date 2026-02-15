@@ -35,6 +35,10 @@
 								
 							2. 프로필 이미지를 업로드 할 때, 파일 크기가 1MB를 넘어가는 경우 "파일 크기가 초과되어 회원가입을 진행할 수 없습니다." 라는 
 							   에러 메세지를 회원가입 페이지(ch07_test_signup.jsp)에서 출력해주세요.
+							  *server.xml 에서 maxPostSize설정해야함(디폴트는 2mb)
+							<Connector connectionTimeout="20000" maxParameterCount="1000" port="8080" protocol="HTTP/1.1" redirectPort="8443"
+							  maxPostSize="20971520"/>
+							   
 						-->
 						<%
 							MemberDAO dao = MemberDAO.getInstance();
@@ -53,7 +57,7 @@
 							String gender = "male".equals(request.getParameter("gender")) ? "남자" : "여자";
 							
 							if (v1 != null && v1.getMem_name()!=null) {
-							    request.getRequestDispatcher("ch07_test_signin.jsp?error=3")
+							    request.getRequestDispatcher("ch07_test_signup.jsp?error=3")
 							           .forward(request, response);
 							    return;
 							}
@@ -71,7 +75,7 @@
 								
 								if(maxSize < fileSize){
 									flag = false;
-									request.getRequestDispatcher("ch07_test_signup.jsp?error=1")
+									request.getRequestDispatcher("ch07_test_signup.jsp?error=4")
 										.forward(request, response);
 									return;
 								}else{

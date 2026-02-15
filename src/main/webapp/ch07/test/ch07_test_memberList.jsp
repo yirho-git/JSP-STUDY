@@ -34,39 +34,41 @@
 	                     <a href="ch07_test_signup.jsp" class="ddit_btn ddit_btn_outline_info">회원등록</a>
 	                     <br/>
 	                     <%
-	                     	String curId = request.getParameter("id");
+	                     	String loginId = request.getParameter("id");
 	                     	
 	                     	MemberDAO dao = MemberDAO.getInstance();
 	                     	List<MemberVO> list = dao.getMemberList();  
 	                     	
-	                     	pageContext.setAttribute("curId", curId);
+	                     	pageContext.setAttribute("loginId", loginId);
 	                     	pageContext.setAttribute("list", list);
 	                     %>	
 	                     <div style="height: 20px;"></div>
-	                     <c:forEach items="${list }" var="n" varStatus="vs">
-							<div class="box" style="border: 1px solid #D4D4D4; width: 200px; margin: 15px;">
-								<div class="title" style="height: 50px; border-bottom: 1px solid #D4D4D4;
-	                     				 display: flex; justify-content: space-around; background-color: #F0F0F0 ;">
-									<c:if test="${n.mem_id == curId }">
-										<span style="color: red; font-size: 15px;">[본인]</span>
-									</c:if>
-									<c:out value="${n.mem_name }님의 정보" />
+	                     <div class="member-wrap" style="display: grid; grid-template-columns: repeat(5, 200px);  gap: 30px; ">
+	                     	<c:forEach items="${list }" var="n" varStatus="vs">
+								<div class="box" style="border: 1px solid #D4D4D4; width: 200px; margin: 0px;">
+									<div class="title" style="height: 50px; border-bottom: 1px solid #D4D4D4;
+	                     					 display: flex; justify-content: center; align-items: center;  background-color: #F0F0F0; ">
+										<c:if test="${n.mem_id == loginId }">
+											<span style="color: red; font-size: 15px; padding-bottom: 2px;">[본인]</span>
+										</c:if>
+										<c:out value="${n.mem_name }님의 정보" />
+									</div>
+									<img alt="" src="${n.filename }" style="border-bottom:1px solid #D4D4D4; width:198px; height:200px; " />
+									<div style="display: flex; justify-content:center; vertical-align: middle;">
+										<c:out value="아이디 : ${n.mem_id }" /><br/>
+										<c:out value="이름 : ${n.mem_name }" /><br/>
+									</div>
+									<div style="border-bottom: 1px solid #D4D4D4; display: flex; justify-content: space-around; align-items: center;
+												height:37px; background-color: #F0F0F0 ;">
+										<form action="ch07_test_memberDetail.jsp" method="get">
+											<input type="text" name="login-id" value="${loginId }" style="display: none;"  >
+											<button type="submit" name="detail-id" value="${n.mem_id}" style="margin-top: 2px; padding: 2px; padding-left:2px;
+										 	padding-right: 2px; border-radius : 10px; background-color: white; border: 1px solid rgb(128, 128, 128);">상세정보</button>
+										</form>
+									</div>
 								</div>
-								<img alt="" src="${n.filename }" style="width:180px; height:200px;" />
-								<div style="display: flex; justify-content:center; vertical-align: middle;">
-									<c:out value="아이디 : ${n.mem_id }" /><br/>
-									<c:out value="이름 : ${n.mem_name }" /><br/>
-								</div>
-								<div style="border-bottom: 1px solid #D4D4D4; display: flex; justify-content: space-around; vertical-align : middle;
-											height:35px; background-color: #F0F0F0 ;">
-									<form action="ch07_test_memberDetail.jsp" method="get">
-										<button type="submit" name="detail-id" value="${n.mem_id}" style="padding: 1px; padding-left:2px;
-										 padding-right: 2px; border-radius : 10%; background-color: white; border: 1px solid black;">상세정보</button>
-									</form>
-								</div>
-							</div>
-	                   	</c:forEach>
-	                     
+		                   	</c:forEach>
+						 </div>
 					</div>
 				</div>
 			</div>
