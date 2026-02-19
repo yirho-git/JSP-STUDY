@@ -111,7 +111,11 @@
 function submitEvent(){
 	const form2 = document.querySelector("#form2").value;
 	let id = form2.element["id"].value;
-	let pw = document.querySelector("#form2").querySelector("#id").value;	
+	let pw = document.querySelector("#form2").querySelector("#id").value;
+	// 그 외 여러가지 방식들
+	let id = document.getElementById("form2").querySelector("#id").value;
+	
+	
 }
 
 
