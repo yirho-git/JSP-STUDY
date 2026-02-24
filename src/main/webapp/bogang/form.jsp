@@ -8,12 +8,13 @@
 </head>
 <style>
 td{
-	border: 1px solid purple;
+	border: 1px solid grey;
 }
 
 th{
-	border: 1px solid purple;
+	border: 1px solid grey;
 }
+
 </style>
 <body>
 	<form action="form_process.jsp">
