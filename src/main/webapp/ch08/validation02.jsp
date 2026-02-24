@@ -84,7 +84,7 @@ $(function(){
 			$("#pw2").focus();
 			return false;
 		}
-		// 폼태그를 이요한 서버 전송(서브밋)
+		// 폼태그를 이용한 서버 전송(서브밋)
 		loginForm2.submit();
 		
 	});

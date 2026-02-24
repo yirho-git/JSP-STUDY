@@ -24,11 +24,11 @@
 						 -->
 						<h5 class="ddit_chapter">게시글 등록</h5>
 						<p class="ddit_text pt-3"></p>
-						<form action="boardInsert.jsp" method="post" id="addForm">
+						<form action="boardInsert.jsp" method="post" id="addForm" enctype="multipart/form-data">
 							<table class="table table-bordered">
 								<tr>
 									<td>제목</td>
-									<td><input type="text" class="form-control" name="title" id="title" value=""/></td>
+									<td><input type="text" class="form-control" id="title" name="title" value=""/></td>
 								</tr>
 								<tr>
 									<td>내용</td>
@@ -40,7 +40,7 @@
 								</tr>
 								<tr>
 									<td colspan="2">
-										<button type="button" class="ddit_btn ddit_btn_outline_primary" id="addBtn">등록</button>
+										<button type="submit" class="ddit_btn ddit_btn_outline_primary" id="addBtn">등록</button>
 										<button type="button" class="ddit_btn ddit_btn_outline_info" id="listBtn">목록</button>
 									</td>
 								</tr>

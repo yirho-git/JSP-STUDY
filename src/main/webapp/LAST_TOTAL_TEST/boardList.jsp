@@ -41,10 +41,9 @@
 							─────────────────────────────────────────────────────────────────────────────
 						-->
 						<%
-							 String[] user = (String[])session.getAttribute("SessionInfo");
+							String[] user = (String[])session.getAttribute("SessionInfo");
+							pageContext.setAttribute("user", user);
 						%>
-						<h5>${user[0] }</h5>
-						${user[1] }
 						
 						<h5 class="ddit_chapter">메뉴 박스</h5>
 						<p class="ddit_text pt-3"></p>
@@ -110,7 +109,7 @@
 	btns.forEach((btn, idx)=>{
 		btn.addEventListener("click", function(e){
 			if(e.target.matches("#boardbtn")){
-				location.href = "boardForm.jsp";
+				location.href = "boardView.jsp";
 			}else if(e.target.matches("#loginbtn")){
 				location.href = "login.jsp";
 			}else if(e.target.matches("#logoutbtn")){

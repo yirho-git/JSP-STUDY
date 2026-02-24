@@ -70,7 +70,6 @@
 							Part part = request.getPart("profileImg");
 							
 							if(part!=null && part.getSubmittedFileName() != null && !part.getSubmittedFileName().equals("")){
-								filename = part.getSubmittedFileName();
 								long fileSize = part.getSize();
 								
 								if(maxSize < fileSize){

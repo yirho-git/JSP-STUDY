@@ -5,6 +5,7 @@ public class BoardFileVO {
 	private String contentType;		// 파일 미디어타입
 	private long fileSize;			// 파일 크기
 	private String fileName;		// 파일 명
+	
 	public int getNo() {
 		return no;
 	}
