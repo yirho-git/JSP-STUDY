@@ -22,6 +22,10 @@
 	                    	1. 로그아웃 시, 세션 초기화를 진행해주세요.
 	                    	2. 로그아웃 후, 게시판 목록으로 이동합니다.
 	                     -->
+						<%
+							session.removeAttribute("SessionInfo");
+							request.getRequestDispatcher("boardList.jsp").forward(request, response);
+						%>	                     
 					</div>
 				</div>
 			</div>
