@@ -86,7 +86,7 @@
 							
 							dao.addBoard(board);
 							
- 							//response.sendRedirect(request.getContextPath() + "/boardView.jsp");
+ 							response.sendRedirect(request.getContextPath() + "/boardView.jsp");
 						 %>
 						 
 					</div>
