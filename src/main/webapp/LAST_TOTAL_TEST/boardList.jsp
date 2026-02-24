@@ -40,12 +40,26 @@
 							[게시판][자료실][로그인]
 							─────────────────────────────────────────────────────────────────────────────
 						-->
+						<%
+							 String[] user = (String[])session.getAttribute("SessionInfo");
+						%>
+						<h5>${user[0] }</h5>
+						${user[1] }
+						
 						<h5 class="ddit_chapter">메뉴 박스</h5>
 						<p class="ddit_text pt-3"></p>
-					 	<button type="button" class="ddit_btn ddit_btn_outline_primary">게시판</button>
-						<button type="button" class="ddit_btn ddit_btn_outline_danger">자료실</button>
-						<button type="button" class="ddit_btn ddit_btn_outline_warning">로그아웃</button>
-						<button type="button" class="ddit_btn ddit_btn_outline_warning">로그인</button>
+					 	<button type="button" id="boardbtn" class="ddit_btn ddit_btn_outline_primary">게시판</button>
+						<button type="button" id="dropboxbtn" class="ddit_btn ddit_btn_outline_danger">자료실</button>
+						<c:choose>
+							<c:when test="${(user[0]!=null)&&(user[1]!=null)}">
+								<button type="button" id="loginbtn" class="ddit_btn ddit_btn_outline_warning" style="display: none;">로그인</button>
+								<button type="button" id="logoutbtn" class="ddit_btn ddit_btn_outline_warning">로그아웃</button>
+							</c:when>
+							<c:otherwise>
+								<button type="button" id="loginbtn" class="ddit_btn ddit_btn_outline_warning">로그인</button>
+								<button type="button" id="logoutbtn" class="ddit_btn ddit_btn_outline_warning" style="display: none;">로그아웃</button>
+							</c:otherwise>
+						</c:choose>
 						
 						<p class="ddit_text pt-3"></p>
 						
@@ -79,7 +93,7 @@
 								</tr>	
 							</tbody>
 						</table>
-						<button type="button" class="ddit_btn ddit_btn_outline_primary">등록</button>
+						<button type="button" id="regbtn" class="ddit_btn ddit_btn_outline_primary">등록</button>
 					</div>
 				</div>
 			</div>
@@ -90,4 +104,25 @@
 	<%@ include file="/module/footerPart.jsp"%>
 	
 </body>
+<script>
+	const btns = document.querySelectorAll(".ddit_btn");
+	
+	btns.forEach((btn, idx)=>{
+		btn.addEventListener("click", function(e){
+			if(e.target.matches("#boardbtn")){
+				location.href = "boardForm.jsp";
+			}else if(e.target.matches("#loginbtn")){
+				location.href = "login.jsp";
+			}else if(e.target.matches("#logoutbtn")){
+				location.href = "logout.jsp";
+			}else if(e.target.matches("#dropboxbtn")){
+				location.href = "dropbox.jsp";
+			}else if(e.target.matches("#regbtn")){
+				location.href = "boardForm.jsp";
+			}
+		});
+	});
+	
+		
+</script>
 </html>

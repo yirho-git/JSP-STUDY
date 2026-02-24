@@ -45,7 +45,7 @@
 						String pw = request.getParameter("memPw");
 						
 						String goPage = "";
-						String[] user = users.get(id);
+						String[] user = users.get(id);	// user = {"id", "pw"}
 						if(user != null){
 							if(user[0].equals(id) && user[1].equals(pw)){
 								session.setAttribute("SessionInfo", user);
