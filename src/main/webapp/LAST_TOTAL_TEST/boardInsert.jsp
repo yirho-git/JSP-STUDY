@@ -38,7 +38,6 @@
 								> 작성자는 로그인 당시에 설정한 회원 정보의 아이디를 작성자로 넣어주세요.					
 						 -->
 						 <%
-						 	
 						 	String title = (String)request.getParameter("title");
 						 	String content = (String)request.getParameter("content");
 							String[] user = (String[])session.getAttribute("SessionInfo");
@@ -86,7 +85,9 @@
 							
 							dao.addBoard(board);
 							
- 							response.sendRedirect(request.getContextPath() + "/boardView.jsp");
+							request.setAttribute("boardVO", board);
+							request.getRequestDispatcher("boardView.jsp").forward(request, response);
+							
 						 %>
 						 
 					</div>

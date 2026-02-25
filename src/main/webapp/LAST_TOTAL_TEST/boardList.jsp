@@ -1,7 +1,11 @@
+<%@page import="kr.or.ddit.ch17.vo.BoardVO"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.or.ddit.ch17.dao.BoardRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 
 <head>
 <%@ include file="/module/headPart.jsp"%>
@@ -42,7 +46,13 @@
 						-->
 						<%
 							String[] user = (String[])session.getAttribute("SessionInfo");
+							
+							BoardRepository dao = BoardRepository.getInstance();
+							List<BoardVO> list = dao.selectBoardList();
+							
+								
 							pageContext.setAttribute("user", user);
+							pageContext.setAttribute("list", list);
 						%>
 						
 						<h5 class="ddit_chapter">메뉴 박스</h5>
@@ -63,7 +73,7 @@
 						<p class="ddit_text pt-3"></p>
 						
 						<h5 class="ddit_chapter">게시판 목록</h5>
-						<p class="ddit_text pt-3"></p>	<!-- 한 줄 넣기위해 추가한 p태그 -->
+						<p class="ddit_text pt-3"></p>	<!-- 한 줄 넣기 위해 추가한 p태그 -->
 						
 						<table border="1" class="table table-bordered">
 							<thead>
@@ -79,10 +89,15 @@
 								<!-- 
 									아래 tr 세트는 데이터 목록이 존재하지 않는 경우라면 첫번째 tr 세트를 이용해서 출력하고
 									데이터 목록이 존재한다면 두번째 tr 세트를 이용해서 출력합니다.
-								-->
-								<tr>
-									<td colspan="5">조회하실 게시글이 존재하지 않습니다.</td>
-								</tr>	
+								 -->
+								 ${fn:length(list) }
+								 ${list.size() }
+								 ${list==null }
+								<c:if test="${fn:length(list) == 0}">
+									<tr>
+										<td colspan="5">조회하실 게시글이 존재하지 않습니다.</td>
+									</tr>
+								</c:if>
 								<tr>
 									<td>[게시글 번호 출력]</td>
 									<td>[게시글 제목 출력]</td>
@@ -109,7 +124,7 @@
 	btns.forEach((btn, idx)=>{
 		btn.addEventListener("click", function(e){
 			if(e.target.matches("#boardbtn")){
-				location.href = "boardView.jsp";
+				location.href = "boardList.jsp";
 			}else if(e.target.matches("#loginbtn")){
 				location.href = "login.jsp";
 			}else if(e.target.matches("#logoutbtn")){

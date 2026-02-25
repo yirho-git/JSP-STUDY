@@ -1,3 +1,5 @@
+<%@page import="kr.or.ddit.ch17.dao.BoardRepository"%>
+<%@page import="kr.or.ddit.ch17.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="jakarta.tags.core" prefix="c" %>
 <!DOCTYPE html>
@@ -22,28 +24,36 @@
 							1. 수정 버튼 클릭 시, 게시글 수정을 진행하기 위해 boardUpdate.jsp로 이동 후 수정 처리를 진행해주세요.
 							2. 목록 버튼 클릭 시, 목록 페이지(boardList.jsp)로 이동해주세요. 
 						-->
+						<%
+							Integer no = Integer.parseInt(request.getParameter("no"));						
+							//out.print(no);	
+							BoardRepository dao = BoardRepository.getInstance();
+							BoardVO board = dao.getBoardById(no);
+							
+							pageContext.setAttribute("board", board);
+						%>
 					 	<h5 class="ddit_chapter">게시판 수정</h5>
 						<form action="boardUpdate.jsp" method="post" id="udtForm">
 							<input type="hidden" name="no" value="${board.no }"/>
 							<table class="table table-bordered">
 								<tr>
 									<td>제목</td>
-									<td><input type="text" class="form-control" name="title" id="title"/></td>
+									<td><input type="text" class="form-control" name="title" id="title" value="${board.title }"/></td>
 								</tr>
 								<tr>
 									<td>내용</td>
 									<td>
-										<textarea class="form-control" rows="8" cols="30" id="content" name="content"></textarea>
+										<textarea class="form-control" rows="8" cols="30" id="content" name="content">${board.content }</textarea>
 									</td>
 								</tr>
 								<tr>
 									<td>파일</td>
-									<td><input type="file" class="form-control" name="filename"/></td>
+									<td><input type="file" class="form-control" name="filename" value=""/></td>
 								</tr>
 								<tr>
 									<td>첨부파일 내용</td>
 									<td>
-										[첨부파일 내용을 출력해주세요 : 파일명 정도?]
+										${board.fileVO.getFileName().split("/")[3] }
 									</td>
 								</tr>
 								<tr>
@@ -64,4 +74,8 @@
 	<%@ include file="/module/footerPart.jsp"%>
 	
 </body>
+<script>
+	
+
+</script>
 </html>

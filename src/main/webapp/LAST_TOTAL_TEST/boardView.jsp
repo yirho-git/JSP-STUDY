@@ -27,23 +27,29 @@
 								> "정말로 삭제하시겠습니까?" 알림창이 나타나고, [취소]버튼을 클릭 시 알림창이 꺼질 수 있게 해주세요.
 							3. 목록 버튼 클릭 시, 목록 페이지(boardList.jsp)로 이동합니다.
 						-->
+						<%
+							BoardVO boardVO = (BoardVO)request.getAttribute("boardVO");
+							String q = "boardUpdateForm.jsp?" + "no=" + String.valueOf(boardVO.getNo());  
+							pageContext.setAttribute("q", q);
+						%>
+						
 						<h5 class="ddit_chapter">게시글 상세보기</h5>
 						<p class="ddit_text pt-3"></p>
 						<table class="table table-bordered">
 							<tr>
 								<td>제목</td>
-								<td>[제목 데이터를 출력해주세요.]</td>
+								<td>${boardVO.getTitle()}</td>
 							</tr>
 							<tr>
-								<td colspan="2">[작성자를 출력해주세요.] [작성일을 출력해주세요.] [조회수를 출력해주세요.]</td>
+								<td colspan="2">작성자 : ${boardVO.getWriter()} &nbsp;등록일 : ${boardVO.getRegDate()} 조회수 : ${boardVO.getHit() }</td>
 							</tr>
 							<tr>
-								<td colspan="2" style="white-space: pre-wrap;">[내용을 출력해주세요.]</td>
+								<td colspan="2" style="white-space: pre-wrap;">${boardVO.getContent()}</td>
 							</tr>
 							<tr>
 								<td>첨부파일</td>
 								<td>
-									[첨부파일 데이터를 출력해주세요.]
+									${boardVO.getFileVO().getFileName().split("/")[3]}
 								</td>
 							</tr>
 							<tr>
@@ -64,4 +70,14 @@
 	<%@ include file="/module/footerPart.jsp"%>
 	
 </body>
+<script>
+const udtbtn = document.querySelector("#udtBtn");
+const delbtn = document.querySelector("#delBtn");
+const listbtn = document.querySelector("#listBtn");
+
+udtbtn.addEventListener("click",()=>{
+	location.href = "${q}";
+});
+
+</script>
 </html>
