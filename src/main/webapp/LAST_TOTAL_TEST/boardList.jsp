@@ -90,21 +90,22 @@
 									아래 tr 세트는 데이터 목록이 존재하지 않는 경우라면 첫번째 tr 세트를 이용해서 출력하고
 									데이터 목록이 존재한다면 두번째 tr 세트를 이용해서 출력합니다.
 								 -->
-								 ${fn:length(list) }
-								 ${list.size() }
-								 ${list==null }
-								<c:if test="${fn:length(list) == 0}">
+						
+								<c:if test="${empty list}">
 									<tr>
 										<td colspan="5">조회하실 게시글이 존재하지 않습니다.</td>
 									</tr>
 								</c:if>
-								<tr>
-									<td>[게시글 번호 출력]</td>
-									<td>[게시글 제목 출력]</td>
-									<td>[게시글 작성자 출력]</td>
-									<td>[게시글 작성일 출력]</td>
-									<td>[게시글 조회수 출력]</td>
-								</tr>	
+								
+								<c:forEach var="b" items="${list}">
+									<tr>
+										<td>${b.no}</td>
+										<td class="ftd">${b.title}</td>
+										<td>${b.writer }</td>
+										<td>${b.regDate }</td>
+										<td>${b.hit }</td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 						<button type="button" id="regbtn" class="ddit_btn ddit_btn_outline_primary">등록</button>
@@ -137,6 +138,26 @@
 		});
 	});
 	
-		
+	const ftds = document.querySelectorAll(".ftd");
+		ftds.forEach(ftd=>{
+			ftd.addEventListener("mouseover", (e)=>{
+				const tar = e.target;
+				tar.style.cursor = "pointer";
+				tar.style.backgroundColor = "skyblue";
+			})
+			
+			ftd.addEventListener("mouseout", (e)=>{
+				const tar = e.target;
+				tar.style.backgroundColor = "";
+			})
+			
+			ftd.addEventListener("click", (e)=>{
+				const tar = e.target;
+				//console.log(tar.previousElementSibling.textContent);
+				const goPage = "boardView.jsp?id=" 
+								+ tar.previousElementSibling.textContent;
+				location.href = goPage;
+			})
+	});
 </script>
 </html>

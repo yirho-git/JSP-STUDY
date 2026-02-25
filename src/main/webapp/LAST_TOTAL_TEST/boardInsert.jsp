@@ -85,8 +85,7 @@
 							
 							dao.addBoard(board);
 							
-							request.setAttribute("boardVO", board);
-							request.getRequestDispatcher("boardView.jsp").forward(request, response);
+							request.getRequestDispatcher("boardView.jsp?id="+board.getNo()).forward(request, response);
 							
 						 %>
 						 
