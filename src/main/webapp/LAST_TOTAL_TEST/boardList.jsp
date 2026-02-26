@@ -109,6 +109,7 @@
 							</tbody>
 						</table>
 						<button type="button" id="regbtn" class="ddit_btn ddit_btn_outline_primary">등록</button>
+						<div><p id="errmsg" style="display: none;">에러</p></div>
 					</div>
 				</div>
 			</div>
@@ -133,31 +134,36 @@
 			}else if(e.target.matches("#dropboxbtn")){
 				location.href = "dropbox.jsp";
 			}else if(e.target.matches("#regbtn")){
-				location.href = "boardForm.jsp";
+				if(${sessionScope.user == null}){
+					const errmsg = document.querySelector("#errmsg");
+					
+					errmsg.style.display = "none";
+					
+				}else location.href = "boardForm.jsp";
 			}
 		});
 	});
 	
 	const ftds = document.querySelectorAll(".ftd");
-		ftds.forEach(ftd=>{
-			ftd.addEventListener("mouseover", (e)=>{
-				const tar = e.target;
-				tar.style.cursor = "pointer";
-				tar.style.backgroundColor = "skyblue";
-			})
-			
-			ftd.addEventListener("mouseout", (e)=>{
-				const tar = e.target;
-				tar.style.backgroundColor = "";
-			})
-			
-			ftd.addEventListener("click", (e)=>{
-				const tar = e.target;
-				//console.log(tar.previousElementSibling.textContent);
-				const goPage = "boardView.jsp?id=" 
-								+ tar.previousElementSibling.textContent;
-				location.href = goPage;
-			})
+	ftds.forEach(ftd=>{
+		ftd.addEventListener("mouseover", (e)=>{
+			const tar = e.target;
+			tar.style.cursor = "pointer";
+			tar.style.backgroundColor = "skyblue";
+		})
+		
+		ftd.addEventListener("mouseout", (e)=>{
+			const tar = e.target;
+			tar.style.backgroundColor = "";
+		})
+		
+		ftd.addEventListener("click", (e)=>{
+			const tar = e.target;
+			//console.log(tar.previousElementSibling.textContent);
+			const goPage = "boardView.jsp?no=" 
+							+ tar.previousElementSibling.textContent;
+			location.href = goPage;
+		})
 	});
 </script>
 </html>

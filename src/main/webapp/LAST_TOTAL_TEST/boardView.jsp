@@ -28,12 +28,15 @@
 							3. 목록 버튼 클릭 시, 목록 페이지(boardList.jsp)로 이동합니다.
 						-->
 						<%
-							String no = (String)request.getAttribute("no");
-							out.print("<p>" + no + "</p>");
+							String no = (String)request.getParameter("no");
+							//out.print("<p>" + no + "</p>");
 							BoardRepository dao = BoardRepository.getInstance();
+							BoardVO boardVO = dao.getBoardById(Integer.parseInt(no));
+							//out.print("<p>" + boardVO.getNo() + "</p>");
 							
 							String q = "boardUpdateForm.jsp?" + "no=" + no;  
 							pageContext.setAttribute("q", q);
+							pageContext.setAttribute("boardVO", boardVO);
 						%>
 						
 						<h5 class="ddit_chapter">게시글 상세보기</h5>
