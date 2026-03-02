@@ -92,6 +92,11 @@ const user = "${sessionScope.SessionInfo[0]}";
 const writer = "${boardVO.writer}";
 
 udtbtn.addEventListener("click",()=>{
+	if(${sessionScope.SessionInfo == null}){
+		alert("로그인 후 이용해주세요");
+		return;
+	}
+	
 	if(user == null || user != writer){
 		alert("작성자가 아닙니다");
 		return;
@@ -100,6 +105,11 @@ udtbtn.addEventListener("click",()=>{
 });
 
 delbtn.addEventListener("click",()=>{
+	if(${sessionScope.SessionInfo == null}){
+		alert("로그인 후 이용해주세요");
+		return;
+	}
+	
 	if(user == null || user != writer){
 		alert("작성자가 아닙니다");
 		return;
