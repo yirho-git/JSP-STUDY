@@ -60,7 +60,7 @@ public class BoardRepository {
 		for (int i = 0; i < listOfBoard.size(); i++) {
 			BoardVO gBoard = listOfBoard.get(i);
 			if (gBoard != null && gBoard.getNo() == board.getNo()) {
-//				gBoard.setNo(board.getNo());
+				gBoard.setNo(board.getNo());
 				gBoard.setTitle(board.getTitle());
 				gBoard.setContent(board.getContent());
 				if(board.getFileVO() != null && !board.getFileVO().getFileName().equals("")) {

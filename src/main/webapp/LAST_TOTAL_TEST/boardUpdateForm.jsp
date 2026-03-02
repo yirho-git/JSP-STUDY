@@ -27,7 +27,7 @@
 						-->
 						<%
 							Integer no = Integer.parseInt(request.getParameter("no"));						
-							//out.print(no);	
+							//out.println(no);	
 							BoardRepository dao = BoardRepository.getInstance();
 							BoardVO board = dao.getBoardById(no);
 							String filename = "";
@@ -41,7 +41,7 @@
 							pageContext.setAttribute("filename", filename);							
 						%>
 					 	<h5 class="ddit_chapter">게시판 수정</h5>
-						<form action="boardUpdate.jsp" method="post" id="udtForm">
+						<form action="boardUpdate.jsp" method="post" id="udtForm" enctype="multipart/form-data">
 							<input type="hidden" name="no" value="${board.no }"/>
 							<table class="table table-bordered">
 								<tr>
@@ -93,7 +93,7 @@ udtbtn.addEventListener("click",()=>{
 		alert("작성자가 아닙니다");
 		return;
 	}
-	location.href = "boardUpdateForm.jsp?no=${param.no}";
+	location.href = "boardUpdate.jsp?no=${param.no}";
 });
 
 cancel.addEventListener("click", ()=>{

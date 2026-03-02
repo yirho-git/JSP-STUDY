@@ -1,3 +1,7 @@
+<%@page import="kr.or.ddit.ch17.vo.BoardVO"%>
+<%@page import="kr.or.ddit.ch17.vo.BoardFileVO"%>
+<%@page import="kr.or.ddit.ch17.dao.BoardRepository"%>
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -26,7 +30,7 @@
 								> 등록과  옵션 정보 동일
 						-->
 						<%
-							
+							String no = (String)request.getParameter("no");
 							String title = (String)request.getParameter("title");
 					 		String content = (String)request.getParameter("content");
 					 		String[] user = (String[])session.getAttribute("SessionInfo");
@@ -36,8 +40,39 @@
 							}
 							
 						 	Part part = request.getPart("filename");
+						 	String path = request.getServletContext().getRealPath("/resources/images");
+						 	File tempFile = new File(path);
+						 	if(!tempFile.exists()) tempFile.mkdirs();
+							
+						 	BoardRepository dao = BoardRepository.getInstance();
+							long maxSize = 1024*1024;
+						 	boolean flag = true;
+						 	BoardFileVO fvo = null;
+						 	if(part!=null && part.getSubmittedFileName()!="" 
+						 				&& !part.getSubmittedFileName().equals("")){
+						 		if(part.getSize()>maxSize) {
+						 			flag = false;
+						 			out.println("<p class='ddit_text'>업로드 파일 크기를 초과하였습니다.</p>");
+						 			return;
+						 		}
+						 		part.write(path + "/" + part.getSubmittedFileName());
+						 		fvo = new BoardFileVO();
+						 		
+						 		fvo.setFileSize(part.getSize());
+						 		fvo.setFileName(request.getContextPath() +
+						 						"/resources/images/" + part.getSubmittedFileName());
+						 		fvo.setContentType(fvo.getFileName().split("\\.")[1]);
+								
+						 	}
+						 	BoardVO boardVO = dao.getBoardById(Integer.parseInt(no));
+							boardVO.setTitle(title);
+							boardVO.setContent(content);
+							boardVO.setWriter(user[0]);
 
-						
+							boardVO.setFileVO(fvo);
+							
+							dao.updateBoard(boardVO);
+							response.sendRedirect("boardView.jsp?no=" + no);
 						%>
 					</div>
 				</div>
