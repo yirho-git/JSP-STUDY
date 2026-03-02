@@ -76,6 +76,7 @@ img{
 							<c:forEach var="f" items="${files }">
 								<div class="col-md-2">
 									<div class="card">
+										${f.getContentType() }
 										<div class="card-header ellipsis">
 											${f.getFileName().split("/")[lastIdx] }
 										</div>
