@@ -29,14 +29,22 @@
 						-->
 						<%
 							String no = (String)request.getParameter("no");
-							//out.print("<p>" + no + "</p>");
 							BoardRepository dao = BoardRepository.getInstance();
 							BoardVO boardVO = dao.getBoardById(Integer.parseInt(no));
 							//out.print("<p>" + boardVO.getNo() + "</p>");
 							
-							String q = "boardUpdateForm.jsp?" + "no=" + no;  
-							pageContext.setAttribute("q", q);
+							String filename = "";
+							
+							if(boardVO.getFileVO()!=null){
+								String[] temp = boardVO.getFileVO().getFileName().split("/");
+								filename = temp[temp.length-1];													
+							}
+							
+							//String q = "boardUpdateForm.jsp?" + "no=" + no;  
+							//pageContext.setAttribute("q", q);
+
 							pageContext.setAttribute("boardVO", boardVO);
+							pageContext.setAttribute("filename", filename);							
 						%>
 						
 						<h5 class="ddit_chapter">게시글 상세보기</h5>
@@ -44,18 +52,18 @@
 						<table class="table table-bordered">
 							<tr>
 								<td>제목</td>
-								<td>${boardVO.getTitle()}</td>
+								<td>${boardVO.title }</td>
 							</tr>
 							<tr>
-								<td colspan="2">작성자 : ${boardVO.getWriter()} &nbsp;등록일 : ${boardVO.getRegDate()} 조회수 : ${boardVO.getHit() }</td>
+								<td colspan="2">작성자 : ${boardVO.writer} &nbsp;등록일 : ${boardVO.regDate} 조회수 : ${boardVO.hit }</td>
 							</tr>
 							<tr>
-								<td colspan="2" style="white-space: pre-wrap;">${boardVO.getContent()}</td>
+								<td colspan="2" style="white-space: pre-wrap;">${boardVO.content}</td>
 							</tr>
 							<tr>
 								<td>첨부파일</td>
 								<td>
-									${boardVO.getFileVO().getFileName().split("/")[3]}
+									${filename}
 								</td>
 							</tr>
 							<tr>
@@ -80,9 +88,30 @@
 const udtbtn = document.querySelector("#udtBtn");
 const delbtn = document.querySelector("#delBtn");
 const listbtn = document.querySelector("#listBtn");
+const user = "${sessionScope.SessionInfo[0]}";
+const writer = "${boardVO.writer}";
 
 udtbtn.addEventListener("click",()=>{
-	location.href = "${q}";
+	if(user == null || user != writer){
+		alert("작성자가 아닙니다");
+		return;
+	}
+	location.href = "boardUpdateForm.jsp?no=${param.no}";
+});
+
+delbtn.addEventListener("click",()=>{
+	if(user == null || user != writer){
+		alert("작성자가 아닙니다");
+		return;
+	}
+	
+	if(confirm("삭제하시겠습니까?")){
+		location.href = "boardRemove.jsp?no=${param.no}";
+	}
+});
+
+listbtn.addEventListener("click",()=>{
+	location.href = "boardList.jsp";
 });
 
 </script>

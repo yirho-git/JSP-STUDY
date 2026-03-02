@@ -1,3 +1,4 @@
+<%@page import="kr.or.ddit.ch17.vo.BoardVO"%>
 <%@page import="kr.or.ddit.ch17.dao.BoardRepository"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -23,6 +24,15 @@
 							1. 삭제할 게시글 정보를 넘겨받고, 삭제를 진행해주세요.
 							2. 삭제 완료 후, 게시판 목록 페이지(boardList.jsp)로 이동해주세요.
 						 -->
+						 <%
+						 	Integer no = Integer.parseInt(request.getParameter("no"));						
+							//out.print(no);	
+							BoardRepository dao = BoardRepository.getInstance();
+							
+							dao.deleteBoard(no);
+							
+							response.sendRedirect("boardList.jsp");
+						 %>
 					</div>
 				</div>
 			</div>

@@ -109,7 +109,7 @@
 							</tbody>
 						</table>
 						<button type="button" id="regbtn" class="ddit_btn ddit_btn_outline_primary">등록</button>
-						<div><p id="errmsg" style="display: none;">에러</p></div>
+						<div><p id="errmsg" style="color:red; display: none;">로그인 후 이용해주세요</p></div>
 					</div>
 				</div>
 			</div>
@@ -134,10 +134,10 @@
 			}else if(e.target.matches("#dropboxbtn")){
 				location.href = "dropbox.jsp";
 			}else if(e.target.matches("#regbtn")){
-				if(${sessionScope.user == null}){
+				if(${sessionScope.SessionInfo == null}){
 					const errmsg = document.querySelector("#errmsg");
 					
-					errmsg.style.display = "none";
+					errmsg.style.display = "block";
 					
 				}else location.href = "boardForm.jsp";
 			}

@@ -25,6 +25,20 @@
 							2. 게시글 수정 시, 등록과 같은 옵션 정보를 처리해주세요.
 								> 등록과  옵션 정보 동일
 						-->
+						<%
+							
+							String title = (String)request.getParameter("title");
+					 		String content = (String)request.getParameter("content");
+					 		String[] user = (String[])session.getAttribute("SessionInfo");
+							if(user==null && user.length==0){
+								out.println("<p class='ddit_text'>연결 끊김</p>");
+								return;
+							}
+							
+						 	Part part = request.getPart("filename");
+
+						
+						%>
 					</div>
 				</div>
 			</div>

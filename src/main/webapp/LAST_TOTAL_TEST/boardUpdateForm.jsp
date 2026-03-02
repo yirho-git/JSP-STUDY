@@ -1,3 +1,4 @@
+<%@page import="kr.or.ddit.ch17.vo.BoardFileVO"%>
 <%@page import="kr.or.ddit.ch17.dao.BoardRepository"%>
 <%@page import="kr.or.ddit.ch17.vo.BoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -29,8 +30,15 @@
 							//out.print(no);	
 							BoardRepository dao = BoardRepository.getInstance();
 							BoardVO board = dao.getBoardById(no);
+							String filename = "";
 							
+							if(board.getFileVO()!=null){
+								String[] temp = board.getFileVO().getFileName().split("/");
+								filename = temp[temp.length-1];													
+							}
+							//out.println("<p class='ddit_text'>"+ filename + "</p");
 							pageContext.setAttribute("board", board);
+							pageContext.setAttribute("filename", filename);							
 						%>
 					 	<h5 class="ddit_chapter">게시판 수정</h5>
 						<form action="boardUpdate.jsp" method="post" id="udtForm">
@@ -53,13 +61,13 @@
 								<tr>
 									<td>첨부파일 내용</td>
 									<td>
-										${board.fileVO.getFileName().split("/")[3] }
+										${filename }
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-										<button type="button" class="btn btn-warning" id="udtBtn">수정</button>
-										<button type="button" class="btn btn-primary">취소</button>
+										<button type="submit" class="btn btn-warning" id="udtBtn">수정</button>
+										<button type="button" class="btn btn-primary" id="cancelBtn">취소</button>
 									</td>
 								</tr>
 							</table>
@@ -75,7 +83,22 @@
 	
 </body>
 <script>
-	
+const udtbtn = document.querySelector("#udtBtn");
+const cancel = document.querySelector("#cancelBtn");
+const user = "${sessionScope.SessionInfo[0]}";
+const writer = "${board.writer}";
+
+udtbtn.addEventListener("click",()=>{
+	if(user == null || user != writer){
+		alert("작성자가 아닙니다");
+		return;
+	}
+	location.href = "boardUpdateForm.jsp?no=${param.no}";
+});
+
+cancel.addEventListener("click", ()=>{
+	location.href = "boardView.jsp?no=${param.no}";
+});
 
 </script>
 </html>

@@ -56,4 +56,12 @@
 	<%@ include file="/module/footerPart.jsp"%>
 	
 </body>
+<script>
+const listbtn = document.querySelector("#listBtn");
+listbtn.addEventListener("click", ()=>{
+	location.href = "boardList.jsp";
+});
+
+</script>
+
 </html>

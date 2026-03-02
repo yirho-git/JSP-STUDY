@@ -42,7 +42,7 @@
 						 	String content = (String)request.getParameter("content");
 							String[] user = (String[])session.getAttribute("SessionInfo");
 							if(user==null && user.length==0){
-								out.println("<p class='ddit_text''>연결 끊김</p>");
+								out.println("<p class='ddit_text'>연결 끊김</p>");
 								return;
 							}
 							
@@ -60,7 +60,7 @@
 						 	if(part!=null && part.getSubmittedFileName()!="" && !part.getSubmittedFileName().equals("")){
 						 		if(part.getSize()>maxSize) {
 						 			flag = false;
-						 			out.println("<p class='ddit_text''>업로드 파일 크기를 초과하였습니다.</p>");
+						 			out.println("<p class='ddit_text'>업로드 파일 크기를 초과하였습니다.</p>");
 						 			return;
 						 		}
 						 		
