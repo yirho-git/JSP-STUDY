@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@ taglib uri="jakarta.tags.core" prefix="c"%>
+<%@ taglib uri="jakarta.tags.functions" prefix="fn" %>
 <html lang="en">
 
 <head>
@@ -76,14 +77,24 @@ img{
 							<c:forEach var="f" items="${files }">
 								<div class="col-md-2">
 									<div class="card">
-										${f.getContentType() }
 										<div class="card-header ellipsis">
 											${f.getFileName().split("/")[lastIdx] }
 										</div>
-										<div class="card-body">
-											<img src="${f.getFileName() }" alt="${f.getFileName() }">
-											Size : ${f.getFileSize() }byte
-										</div>
+										<c:choose>
+											<c:when test="${fn:substringAfter(f.getFileName(),'.') ne 'jpg'}">
+												<div class="card-body">
+												<img src="/resources/images/fileIcon/${fn:substringAfter(f.getFileName(),'.') }.jpg" alt="${f.getFileName() }">
+												Size : ${f.getFileSize() }byte
+												</div>
+											</c:when>
+								
+											<c:otherwise>
+												<div class="card-body">
+												<img src="${f.getFileName() }" alt="${f.getFileName() }">
+												Size : ${f.getFileSize() }byte
+												</div>
+											</c:otherwise>
+										</c:choose>
 										<div class="card-footer">
 											<a href="${f.getFileName() }" download="${f.getFileName().split("/")[lastIdx] }">Download</a>
 										</div>
